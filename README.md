@@ -36,3 +36,9 @@ composer install
 4. демонстрація GitHub Secrets (значення маскується як `***`);
 5. `./vendor/bin/pint --test` — перевірка стилю коду;
 6. `./vendor/bin/phpunit tests/Unit` — юніт-тести.
+
+## Вимоги
+
+- PHP 8.2+
+- Composer 2.x
+- Git
