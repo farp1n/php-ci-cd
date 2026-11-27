@@ -7,7 +7,7 @@ namespace App\Models;
 use App\Interfaces\ExportableInterface;
 use App\Traits\JsonExportTrait;
 
-class User extends AbstractEntity implements ExportableInterface
+class Subscriber extends AbstractEntity implements ExportableInterface
 {
     use JsonExportTrait;
 
@@ -24,7 +24,7 @@ class User extends AbstractEntity implements ExportableInterface
     public function getDetails(): string
     {
         return sprintf(
-            'Користувач %s (ID: %s), тел: %s, баланс: %.2f грн',
+            'Абонент %s (ID: %s), тел: %s, баланс: %.2f грн',
             $this->name,
             $this->id,
             $this->phone,

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Core;
 
 use App\Models\AbstractEntity;
-use App\Models\Scooter;
-use App\Models\User;
+use App\Models\ContentItem;
+use App\Models\Subscriber;
 use InvalidArgumentException;
 
 class EntityFactory
@@ -17,15 +17,15 @@ class EntityFactory
     public static function createEntity(string $type, array $data): AbstractEntity
     {
         return match ($type) {
-            'scooter' => new Scooter(
+            'content' => new ContentItem(
                 id: $data['id'],
                 createdAt: $data['createdAt'],
-                model: $data['model'],
-                ratePerMin: $data['ratePerMin'],
-                available: $data['available'],
-                batteryLevel: $data['batteryLevel'],
+                title: $data['title'],
+                category: $data['category'],
+                isPublished: $data['isPublished'],
+                viewsCount: $data['viewsCount'],
             ),
-            'user' => new User(
+            'subscriber' => new Subscriber(
                 id: $data['id'],
                 createdAt: $data['createdAt'],
                 name: $data['name'],

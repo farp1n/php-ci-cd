@@ -26,30 +26,30 @@ echo '<p>Один і той самий екземпляр: '.($db1 === $db2 ? '�
 
 // Factory + AbstractEntity + JsonExportTrait
 echo '<h2>Factory + наслідування + експорт JSON</h2>';
-$scooter = EntityFactory::createEntity('scooter', [
-    'id' => 'scooter-001',
+$contentItem = EntityFactory::createEntity('content', [
+    'id' => 'content-001',
     'createdAt' => '2026-11-24 10:00:00',
-    'model' => 'Xiaomi Mi Electric Scooter 4',
-    'ratePerMin' => 3.5,
-    'available' => true,
-    'batteryLevel' => 87,
+    'title' => 'Як активувати роумінг у подорожі',
+    'category' => 'Стаття',
+    'isPublished' => true,
+    'viewsCount' => 4820,
 ]);
-$user = EntityFactory::createEntity('user', [
-    'id' => 'user-001',
+$subscriber = EntityFactory::createEntity('subscriber', [
+    'id' => 'sub-001',
     'createdAt' => '2026-11-24 10:05:00',
-    'name' => 'Стас Краївський',
+    'name' => 'Іван Петренко',
     'phone' => '+380671234567',
     'balance' => 250.0,
 ]);
-echo '<p>'.$scooter->getDetails().'</p>';
-echo '<p>'.$user->getDetails().'</p>';
-echo '<pre>'.$scooter->exportToJson().'</pre>';
+echo '<p>'.$contentItem->getDetails().'</p>';
+echo '<p>'.$subscriber->getDetails().'</p>';
+echo '<pre>'.$contentItem->exportToJson().'</pre>';
 
 // Dependency Injection
 echo '<h2>Dependency Injection (EntityService + Logger)</h2>';
 $service = new EntityService(new ConsoleLogger);
-$cost = $service->calculateRideCost(30, 3.5);
-echo '<p>Вартість поїздки: '.number_format($cost, 2, '.', ' ').' грн</p>';
+$cost = $service->calculateSubscriptionCost(12, 150.0);
+echo '<p>Вартість підписки: '.number_format($cost, 2, '.', ' ').' грн</p>';
 try {
     $service->applyDiscount(1000.0, 150.0);
 } catch (Exception $e) {
