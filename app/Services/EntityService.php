@@ -15,24 +15,24 @@ class EntityService
     ) {}
 
     /**
-     * Розраховує вартість поїздки на самокаті.
+     * Розраховує вартість підписки абонента на тарифний пакет.
      *
-     * @param  int  $minutes  тривалість поїздки у хвилинах
-     * @param  float  $ratePerMin  тариф за хвилину (грн)
-     * @return float вартість поїздки (грн)
+     * @param  int  $months  термін підписки у місяцях
+     * @param  float  $monthlyFee  вартість місяця підписки (грн)
+     * @return float вартість підписки (грн)
      */
-    public function calculateRideCost(int $minutes, float $ratePerMin): float
+    public function calculateSubscriptionCost(int $months, float $monthlyFee): float
     {
-        $this->logger->log("Розрахунок вартості поїздки: {$minutes} хв × {$ratePerMin} грн/хв");
+        $this->logger->log("Розрахунок вартості підписки: {$months} міс × {$monthlyFee} грн/міс");
 
-        if ($minutes <= 0) {
-            throw new InvalidArgumentException('Тривалість поїздки має бути додатною!');
+        if ($months <= 0) {
+            throw new InvalidArgumentException('Термін підписки має бути додатним!');
         }
-        if ($ratePerMin <= 0) {
-            throw new InvalidArgumentException('Тариф за хвилину має бути додатним!');
+        if ($monthlyFee <= 0) {
+            throw new InvalidArgumentException('Вартість місяця підписки має бути додатною!');
         }
 
-        return $minutes * $ratePerMin;
+        return $months * $monthlyFee;
     }
 
     /**
